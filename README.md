@@ -10,7 +10,7 @@
 
 ## online
 ### creare un account github se mancante
-### navigare in "https://github.com/codespaces/new" per creare un codespace
+### navigare in "https://github.com/codespaces" per creare un codespace
 ### creare un codespace da blank
 ### clonare la repo nel codespace (tramite comando dalla console)
     gh repo clone f55826250/repo-1
