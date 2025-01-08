@@ -1,0 +1,84 @@
+{% extends "Project/layout.html"%}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{%static 'styles/homepage.css'%}">
+{% endblock %}
+
+{% block body%}
+<div class="align-items-center justify-content-center bg-light" style="height: 100vh;">
+    <h2 class="mb-4">Uploaded films</h2>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Genres</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Poster</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for film in films%}
+            <tr>
+                <td>{{film.pk}}</td>
+                <td>{{film.title}}</td>
+                <td>{{film.description}}</td>
+                <td>
+                    {%for genre in film.genre.all%}
+                        {{genre.genre}}
+                    {%endfor%}   
+                </td>
+                <td>
+                    <a href="{%url 'updatefilm' id=film.id%}">
+                        <button class="btn btn-primary">Modify Film</button>
+                    </a>
+                </td>
+                <td>
+                    <img src="{{ film.poster.url }}" class="card-img-top film-poster" alt="{{ film.title }} Poster" width="50" height="100">
+                </td>
+                
+            </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+      <h2 class="mb-4">Uploaded Reviews</h2>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Film title</th>
+            <th scope="col">Film Id</th>
+            <th scope="col">Review Body</th>
+            <th scope="col">Review Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for review in reviews%}
+          <tr>
+            <td>
+                {{review.pk}}
+            </td>
+            <td>
+                {{review.film.title}}
+            </td>
+            <td>
+                {{review.film.pk}}
+            </td>
+            <td>
+                {{review.body}}
+            </td>
+            <td>
+                {{review.rating}}
+            </td>
+            <td>
+                <a href="{%url 'updatereview' id=review.pk%}">
+                    <button class="btn btn-primary">Modify Review</button>
+                </a>
+            </td>            
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+</div>
+{%endblock%}

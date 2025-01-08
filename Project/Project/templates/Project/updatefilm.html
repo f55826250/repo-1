@@ -1,0 +1,54 @@
+{% extends "Project/layout.html"%}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{%static 'styles/homepage.css'%}">
+{% endblock %}
+
+{% block body%}
+<div class="d-flex align-items-center justify-content-center bg-light" style="height: 100vh;">
+    <div class="card p-4 shadow-sm form-group" style="max-width: 400px; width: 100%;">
+        <h3 class="text-center mb-4">Update {{title}}</h3>
+        <form action="{% url 'updatefilm' id=id%}" method="post" enctype="multipart/form-data">
+            {% csrf_token %} 
+            <!-- Title -->
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter the film title" required value="{{title}}">
+            </div>
+
+            <!-- description -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="description" class="form-control" id="description">{{description}}</textarea>
+            </div>
+
+            <!-- Poster -->
+            <div class="mb-3">
+                <label for="poster" class="form-label">Poster</label>
+                <input type="file" class="form-control" id="poster" name="poster" placeholder="Upload the poster" required>
+            </div>
+            
+            <!-- Genre Selector -->
+            <div class="form-group">
+                <label for="genres">Select Genres</label>
+                <select name="genres" id="genres" class="form-control" multiple>
+                    <optgroup label="Selected">
+                        {% for genre in selected %}
+                            <option value="{{ genre.pk }}" selected>{{ genre.genre }}</option>
+                        {% endfor %}
+                    </optgroup>
+                    <optgroup label="Not Selected">
+                        {% for genre in unselectedg %}
+                            <option value="{{ genre.pk }}">{{ genre.genre }}</option>
+                        {% endfor %}    
+                    </optgroup>
+                    
+                </select>
+            </div>
+            
+            <!-- Update -->
+            <button type="submit" class="btn btn-dark w-100">Update</button>
+            </form>
+      </div>
+</div>
+{%endblock%}

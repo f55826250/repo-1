@@ -1,0 +1,122 @@
+{% extends "Project/layout.html"%}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{%static 'styles/homepage.css'%}">
+{% endblock %}
+
+{% block body%}
+  <div id="carouselHeader" class="carousel slide cheader" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'images/hero1.png'%}" alt="Image 1">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/hero2.png'%}" alt="Image 2">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/hero3.png'%}" alt="Image 3">
+      </div>
+    </div>
+    
+    <div class="header-content">
+      <h1>Join FilmCommunity Now</h1>
+      <p>Welcome to FilmCommunity, where every movie lover finds their place. Dive into a world of cinematic adventures and share your thoughts with fellow enthusiasts!</p>
+    </div>
+  </div>
+
+  <div class="section discover-section text-center py-5">
+    <h2>Discover Your Next Favorite Film Today</h2>
+    <p>Dive into a world of diverse films and genres. Join us to explore, discuss, and celebrate the art of cinema.</p>
+  
+    <div class="row mt-4 bor">
+      <div class="col-md-4">
+        <img src="{% static 'images/discover1.png'%}" alt="Explore Films" class="img-fluid mb-3">
+        <h4>Explore Various Films</h4>
+        <p>Browse our extensive library of films from all eras.</p>
+      </div>
+      <div class="col-md-4">
+        <img src="{% static 'images/discover2.png'%}" alt="Join Discussions" class="img-fluid mb-3">
+        <h4>Join Discussions</h4>
+        <p>Engage with fellow film enthusiasts and share your thoughts.</p>
+      </div>
+      <div class="col-md-4">
+        <img src="{% static 'images/discover3.png'%}" alt="Exclusive Screenings" class="img-fluid mb-3">
+        <h4>Exclusive Member Screenings</h4>
+        <p>Enjoy special screenings of new releases and classics.</p>
+      </div>
+    </div>
+  
+    <p class="mt-4">
+      <a href="#" class="learn-more">Learn More →</a>
+    </p>
+  </div>
+
+  <div class="faq-section text-center py-5">
+    <h2 class="mb-4">Frequently Asked Questions</h2>
+    <div class="accordion mx-auto" id="faqAccordion" style="max-width: 800px;">
+      <div class="card">
+        <div class="card-header">
+          <h5>
+            <button class="btn btn-link text-dark font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseOne">
+              What is the club?
+            </button>
+          </h5>
+        </div>
+        <div id="collapseOne" class="collapse show">
+          <div class="card-body">
+            Our club is a place for everyone who is looking to get into filmaking.
+          </div>
+        </div>
+      </div>
+  
+      <div class="card">
+        <div class="card-header">
+          <h5>
+            <button class="btn btn-link text-dark font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseTwo">
+              How to become a member?
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse">
+          <div class="card-body">
+            Becoming a member is easy! Simply sign up on our website.
+          </div>
+        </div>
+      </div>
+  
+      <div class="card">
+        <div class="card-header">
+          <h5>
+            <button class="btn btn-link text-dark font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseFour">
+              What events do you host?
+            </button>
+          </h5>
+        </div>
+        <div id="collapseFour" class="collapse">
+          <div class="card-body">
+            We host a variety of events including film screenings and discussion panels.
+          </div>
+        </div>
+      </div>
+  
+      <div class="card">
+        <div class="card-header">
+          <h5>
+            <button class="btn btn-link text-dark font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseFive">
+              Is there a fee?
+            </button>
+          </h5>
+        </div>
+        <div id="collapseFive" class="collapse">
+          <div class="card-body">
+            No, but if you want to contribute you can buy me a coffe on ..................
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <strong class="d-block mt-4">Still have Questions?</strong>
+    <a href="#" class="btn btn-outline-dark mt-2">Contact Us</a>
+  </div>
+
+{%endblock%}

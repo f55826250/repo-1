@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FilmCommunity</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <script src="{% static 'scripts/queryscr.js' %}"> </script>
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+
+    <!-- Nav Section -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'images/logoFC.png' %}" width="50" height="50" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Homepage</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'fcon' %}">Film Collection</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        More Films
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'genre' 1 %}">Action</a>
+                        <a class="dropdown-item" href="{% url 'genre' 2 %}">Drama</a>
+                        <a class="dropdown-item" href="{% url 'genre' 3 %}">Adventure</a>
+                        <a class="dropdown-item" href="{% url 'allgenres' %}">Others</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="query-link" href="{% url 'fcon' %}">Search</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'favorites' %}">Favorites</a>
+                </li>
+                {% endif %}
+            </ul>
+            
+            {% if user.is_authenticated %}
+            <a href="{% url 'userarea' %}">
+                <button class="btn btn-outline-dark mx-2">User Area</button>
+            </a>
+            <a href="{% url 'logout' %}">
+                <button class="btn btn-inline-dark mx-2">Log Out</button>
+            </a>
+            {% else %}
+            <a href="{% url 'register' %}">
+                <button class="btn btn-outline-dark mx-2">Sign Up</button>
+            </a>
+            <a href="{% url 'login' %}">
+                <button class="btn btn-inline-dark mx-2">Login</button>
+            </a>
+            {% endif %}
+        </div>
+    </nav>
+    
+    <!-- Query Section -->
+    <div id="query-section" class="container" style="display: none; width: 70%; margin: 0 auto; padding-top: 20px;">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" action="{% url 'queryfilm' %}">
+                    {% csrf_token %} 
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="query-input" name="query" placeholder="Search" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% block body %}
+    {% endblock %}
+
+    <!-- Footer Section -->
+    <footer class="contact-us-footer py-5">
+        <div class="container">
+            <div class="row text-center">
+            <!-- Email Section -->
+            <div class="col-md-4">
+                <i class="fas fa-envelope mb-3 fa-2x"></i>
+                <h4>Email</h4>
+                <p>We’re here to answer your questions and provide assistance.</p>
+                <p><strong>help@FilmComm.it</strong></p>
+            </div>
+        
+            <!-- Phone Section -->
+            <div class="col-md-4">
+                <i class="fas fa-phone mb-3 fa-2x"></i>
+                <h4>Phone</h4>
+                <p>Reach out to us for immediate support.</p>
+                <p><strong>+1 (555) 000-0000</strong></p>
+            </div>
+        
+            <!-- Office Section -->
+            <div class="col-md-4">
+                <i class="fas fa-map-marker-alt mb-3 fa-2x"></i>
+                <h4>Office</h4>
+                <p>Visit us for in-person inquiries and discussions.</p>
+                <p><strong>123 Sample St, Sydney NSW 2000 AU</strong></p>
+            </div>
+            </div>
+        </div>
+    </footer>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    {% block js %}
+    {% endblock %}
+    </body>
+
+
+</html>

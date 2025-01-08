@@ -1,0 +1,30 @@
+{% extends "Project/layout.html"%}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{%static 'styles/homepage.css'%}">
+{% endblock %}
+
+{% block body%}
+<div class="d-flex align-items-center justify-content-center bg-light" style="height: 100vh;">
+    <div class="card p-4 shadow-sm form-group" style="max-width: 400px; width: 100%;">
+        <h3 class="text-center mb-4">Update your review on {{title}}</h3>
+        <form action="{% url 'updatereview' id=id%}" method="post">
+            {% csrf_token %} 
+            <!-- ReviewText -->
+            <div class="mb-3">
+                <label for="reviewText" class="form-label">review</label>
+                <textarea name="reviewText" class="form-control" id="reviewText">{{reviewText}}</textarea>
+            </div>
+
+            <!-- Rating -->
+            <div class="mb-3">
+                <label for="rating" class="form-label">rating</label>
+                <input type="number" class="form-control" id="rating" name="rating" placeholder="Enter the film rating" required value="{{rating}}">
+            </div>
+
+            <!-- Update -->
+            <button type="submit" class="btn btn-dark w-100">Update</button>
+        </form>
+    </div>
+</div>
+{%endblock%}

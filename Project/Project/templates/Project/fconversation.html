@@ -1,0 +1,85 @@
+{% extends "Project/layout.html"%}
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{%static 'styles/homepage.css'%}">
+{% endblock %}
+
+{% block body%}
+  <div class="film-collection py-5 text-center">
+    <div class="container">
+      <h3 class="fw-bold">Explore Our Film Collection</h3>
+      <p>Dive into captivating stories and cinematic experiences.</p>
+      <div class="row">
+        <!-- Card 1 -->
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm">
+            <img src="{{ rfa.poster.url }}" class="card-img-top" alt="Film Image">
+            <div class="card-body">
+              <h5 class="card-title">{{ rfa.title }}</h5>
+              <p class="card-text">{{ rfa.description }}</p>
+              {% for genre in rfa.genre.all %}
+                <span class="badge bg-secondary">{{genre}}</span>
+              {%endfor%}
+              <a href="{% url 'stream' rfa.id %}" class="d-block mt-3">View project &rarr;</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm">
+            <img src="{{ rfb.poster.url }}" class="card-img-top" alt="Film Image">
+            <div class="card-body">
+              <h5 class="card-title">{{ rfb.title }}</h5>
+              <p class="card-text">{{ rfb.description }}</p>
+              {% for genre in rfb.genre.all %}
+                <span class="badge bg-secondary">{{genre}}</span>
+              {%endfor%}
+              <a href="{% url 'stream' rfb.id %}" class="d-block mt-3">View project &rarr;</a>
+            </div>
+          </div>
+        </div>
+      <a href="{%url 'films'%}" class="btn btn-outline-dark mt-3">View All</a>
+    </div>
+  </div>
+  <div class="discover-section py-5 text-center">
+    <div class="container">
+      <p class="text-muted mb-2">Explore</p>
+      <h2 class="fw-bold mb-4">Discover Your Next Favorite Film Today</h2>
+      <p class="mb-5">Dive into a world of cinematic excellence with our curated categories. Whether you're seeking the best-rated films, the latest releases, or timeless classics, we have something for every movie lover.</p>
+  
+      <div class="row text-center">
+        <!-- Column 1 -->
+        <div class="col-md-4 mb-4">
+          <div class="icon mb-3">
+            <img src="{% static 'images/star.png'%}" alt="Top Rated Icon" width="30" height="30">
+          </div>
+          <h4 class="fw-bold">Top Rated Films That You Must Watch</h4>
+          <p>Explore our selection of films that have captured the hearts of audiences and critics alike.</p>
+        </div>
+  
+        <!-- Column 2 -->
+        <div class="col-md-4 mb-4">
+          <div class="icon mb-3">
+            <img src="{% static 'images/film.png'%}" alt="New Releases Icon" width="30" height="30">
+          </div>
+          <h4 class="fw-bold">Exciting New Releases Just for You</h4>
+          <p>Stay updated with the latest films that are making waves in theaters.</p>
+        </div>
+  
+        <!-- Column 3 -->
+        <div class="col-md-4 mb-4">
+          <div class="icon mb-3">
+            <img src="{% static 'images/trophy.png'%}" alt="Classics Icon" width="30" height="30">
+          </div>
+          <h4 class="fw-bold">Timeless Classics That Define Cinema History</h4>
+          <p>Revisit the films that have shaped the industry and continue to inspire generations.</p>
+        </div>
+      </div>
+  
+      <div class="d-flex justify-content-center gap-3 mt-4">
+        <a href="#" class="btn btn-outline-dark">Learn More</a>
+        <a href="#" class="btn btn-dark">Join &rarr;</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

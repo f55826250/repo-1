@@ -1,0 +1,31 @@
+{% extends "Project/layout.html"%}
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{%static 'styles/homepage.css'%}">
+{% endblock %}
+
+{% block body%}
+<div class="film-container">
+    <div class="container my-4">
+        <h1 class="text-center mb-4">Films List</h1>
+    
+        <div class="row film-container">
+            {% for film in films %}
+                <div class="col-md-4 col-sm-6">
+                    <a href="{% url 'stream' film.id %}">
+                        <div class="card film-card">
+                            <!-- Film Poster -->
+                            <img src="{{ film.poster.url }}" class="card-img-top film-poster" alt="{{ film.title }} Poster">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ film.title }}</h5>
+                                <p class="card-text">{{ film.description|truncatewords:15 }}</p>
+                                <p class="text-muted">Genere: {% for genre in film.genre.all %} {{genre}}, {%endfor%}</p> 
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
